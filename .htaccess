@@ -1,0 +1,17 @@
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /LandingPage/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{QUERY_STRING} !lp-variation-id
+RewriteRule ^go/([^/]*)/([0-9]+)/ /LandingPage/go/$1?lp-variation-id=$2 [QSA,L]
+RewriteCond %{QUERY_STRING} !lp-variation-id
+RewriteRule ^go/([^/]*)? /LandingPage/wp-content/plugins/landing-pages/modules/module.redirect-ab-testing.php?permalink_name=$1  [QSA,L]
+RewriteRule ^landing-page=([^/]*)? /LandingPage/wp-content/plugins/landing-pages/modules/module.redirect-ab-testing.php?permalink_name=$1 [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /LandingPage/index.php [L]
+</IfModule>
+
+# END WordPress
